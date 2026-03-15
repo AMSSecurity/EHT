@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETHANE — Emergency Information Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --navy: #1a2340;
+    --navy-mid: #243058;
+    --yellow: #f5c800;
+    --red: #cc2200;
+    --white: #ffffff;
+    --light-grey: #f0f2f5;
+    --border: #dde2ec;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light-grey);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy);
+    color: white;
+  }
+  .header-stripe { background: var(--yellow); height: 8px; }
+  .header-inner {
+    padding: 18px 30px 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .back-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .back-link:hover { background: rgba(255,255,255,0.1); color: white; }
+  .header-titles { flex: 1; }
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  header h1 span { color: var(--yellow); }
+  .header-sub {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+  }
+  .threat-banner {
+    background: var(--red);
+    padding: 8px 30px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    text-transform: uppercase;
+  }
+  .threat-banner span { color: var(--yellow); }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+    display: grid;
+    gap: 20px;
+  }
+
+  /* INTRO CARD */
+  .intro-card {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 20px 24px;
+    color: white;
+    border-left: 6px solid var(--yellow);
+    animation: fadeUp 0.4s ease both;
+  }
+  .intro-card p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+  .intro-card strong { color: var(--yellow); }
+
+  /* ETHANE ACRONYM GRID */
+  .ethane-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .ethane-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    display: flex;
+    flex-direction: column;
+    animation: fadeUp 0.4s ease both;
+  }
+  .ethane-card:nth-child(1) { animation-delay: 0.05s; }
+  .ethane-card:nth-child(2) { animation-delay: 0.10s; }
+  .ethane-card:nth-child(3) { animation-delay: 0.15s; }
+  .ethane-card:nth-child(4) { animation-delay: 0.20s; }
+  .ethane-card:nth-child(5) { animation-delay: 0.25s; }
+  .ethane-card:nth-child(6) { animation-delay: 0.30s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .ethane-card-header {
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .ethane-letter {
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .ethane-heading {
+    padding: 10px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+  .ethane-heading small {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .ethane-body {
+    padding: 14px 16px;
+    flex: 1;
+  }
+  .ethane-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ethane-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    color: #333;
+    align-items: flex-start;
+  }
+  .ethane-list li::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--yellow);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* QUICK REF STRIP */
+  .quick-strip {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 18px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 30px;
+    align-items: center;
+    animation: fadeUp 0.4s ease 0.35s both;
+  }
+  .quick-strip-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    width: 100%;
+  }
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.88rem;
+  }
+  .strip-letter {
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <a href="index.html" class="back-link">← Back to Hub</a>
+    <div class="header-titles">
+      <div class="header-tag">Emergency Reporting</div>
+      <h1><span>ETHANE</span> — Emergency Information Guide</h1>
+      <div class="header-sub">Relay the important information required by emergency services</div>
+    </div>
+  </div>
+  <div class="threat-banner">⚠ Life-threatening situations — call <span>000 immediately</span></div>
+</header>
+
+<main>
+
+  <div class="intro-card">
+    <p>The <strong>ETHANE mnemonic</strong> assists staff to relay the important information required by emergency services when reporting a critical incident. Work through each element in order to ensure nothing is missed.</p>
+  </div>
+
+  <div class="ethane-grid">
+
+    <div class="ethane-card">
+      <div class="ethane-card-header">
+        <div class="ethane-letter">E</div>
+        <div class="ethane-heading"><small>Element 1</small>Exact Location</div>
+      </div>
+      <div class="ethane-body">
+        <ul class="ethane-list">
+          <li>Confirm nearest junction or exact address</li>
+          <li>Geographical size of the incident</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ethane-card">
+      <div class="ethane-card-header">
+        <div class="ethane-letter">T</div>
+        <div class="ethane-heading"><small>Element 2</small>Type of Incident</div>
+      </div>
+      <div class="ethane-body">
+        <ul class="ethane-list">
+          <li>Explosion, building collapse, firearms incident etc.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ethane-card">
+      <div class="ethane-card-header">
+        <div class="ethane-letter">H</div>
+        <div class="ethane-heading"><small>Element 3</small>Hazards</div>
+      </div>
+      <div class="ethane-body">
+        <ul class="ethane-list">
+          <li>Identify the hazards present or suspected (such as number of hostiles, types of weapons etc.)</li>
+          <li>Consider potential or secondary devices</li>
+          <li>Is evacuation or in-vacuation necessary and safe?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ethane-card">
+      <div class="ethane-card-header">
+        <div class="ethane-letter">A</div>
+        <div class="ethane-heading"><small>Element 4</small>Access Routes</div>
+      </div>
+      <div class="ethane-body">
+        <ul class="ethane-list">
+          <li>Nominate and search the rendezvous point</li>
+          <li>Clarify routes which are blocked</li>
+          <li>Update with routes that are safe to use</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ethane-card">
+      <div class="ethane-card-header">
+        <div class="ethane-letter">N</div>
+        <div class="ethane-heading"><small>Element 5</small>Number of Casualties</div>
+      </div>
+      <div class="ethane-body">
+        <ul class="ethane-list">
+          <li>List type and severity</li>
+          <li>Approximate number of dead, injured, survivors and witnesses</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ethane-card">
+      <div class="ethane-card-header">
+        <div class="ethane-letter">E</div>
+        <div class="ethane-heading"><small>Element 6</small>Emergency Services</div>
+      </div>
+      <div class="ethane-body">
+        <ul class="ethane-list">
+          <li>List those services present and those required</li>
+          <li>Conduct a joint dynamic hazard assessment with the emergency services</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- QUICK REFERENCE STRIP -->
+  <div class="quick-strip">
+    <div class="quick-strip-label">Quick Reference — ETHANE at a Glance</div>
+    <div class="strip-item"><div class="strip-letter">E</div> Exact Location</div>
+    <div class="strip-item"><div class="strip-letter">T</div> Type of Incident</div>
+    <div class="strip-item"><div class="strip-letter">H</div> Hazards</div>
+    <div class="strip-item"><div class="strip-letter">A</div> Access Routes</div>
+    <div class="strip-item"><div class="strip-letter">N</div> Number of Casualties</div>
+    <div class="strip-item"><div class="strip-letter">E</div> Emergency Services</div>
+  </div>
+
+</main>
+
+<footer>AMS Security · ETHANE Emergency Reporting Guide · For internal use only</footer>
+
+</body>
+</html>

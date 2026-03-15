@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hostile Reconnaissance Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --navy: #1a2340;
+    --navy-mid: #243058;
+    --yellow: #f5c800;
+    --red: #cc2200;
+    --light-grey: #f0f2f5;
+    --border: #dde2ec;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light-grey);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  header { background: var(--navy); color: white; }
+  .header-stripe { background: var(--yellow); height: 8px; }
+  .header-inner {
+    padding: 18px 30px 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .back-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .back-link:hover { background: rgba(255,255,255,0.1); color: white; }
+  .header-titles { flex: 1; }
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  header h1 span { color: var(--yellow); }
+  .header-sub { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+  .threat-banner {
+    background: var(--red);
+    padding: 8px 30px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    text-transform: uppercase;
+  }
+  .threat-banner span { color: var(--yellow); }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 20px 50px;
+    display: grid;
+    gap: 20px;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: -8px;
+  }
+
+  /* INTRO */
+  .intro-card {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 18px 22px;
+    color: white;
+    border-left: 6px solid var(--yellow);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.75);
+    animation: fadeUp 0.4s ease both;
+  }
+  .intro-card strong { color: var(--yellow); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TWO COLUMN LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    animation: fadeUp 0.4s ease both;
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.18s; }
+
+  .card-header {
+    background: var(--navy);
+    color: white;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-header.yellow { background: var(--yellow); color: var(--navy); }
+  .card-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card-body { padding: 16px 18px; }
+
+  /* BEHAVIOUR LIST */
+  .behaviour-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .behaviour-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .behaviour-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .b-icon {
+    font-size: 1.4rem;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checklist li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--yellow);
+    border-radius: 3px;
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--navy);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  /* REPORTING CARD */
+  .reporting-card {
+    background: var(--navy);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.1);
+    animation: fadeUp 0.4s ease 0.2s both;
+  }
+  .reporting-header {
+    background: var(--yellow);
+    color: var(--navy);
+    padding: 12px 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .reporting-body {
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .report-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .report-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 2px;
+  }
+  .report-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+  }
+  .report-name {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .report-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+    align-self: stretch;
+  }
+  .report-note {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    padding-top: 2px;
+  }
+  .report-note strong { color: white; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <a href="index.html" class="back-link">← Back to Hub</a>
+    <div class="header-titles">
+      <div class="header-tag">Threat Awareness</div>
+      <h1><span>Hostile</span> Reconnaissance</h1>
+      <div class="header-sub">Identifying, recording and reporting suspicious behaviour</div>
+    </div>
+  </div>
+  <div class="threat-banner">⚠ Life-threatening situations — call <span>Triple Zero (000) immediately</span></div>
+</header>
+
+<main>
+
+  <div class="intro-card">
+    You know what's normal in your everyday work environment — <strong>trust your instincts</strong>. Activities or possessions that appear out of context may be an indicator of hostile reconnaissance. Suspicious behaviour or activity should be reported to authorities.
+  </div>
+
+  <div class="section-label">Recognition & Recording</div>
+
+  <div class="two-col">
+
+    <!-- WHAT IS SUSPICIOUS -->
+    <div class="card">
+      <div class="card-header yellow">
+        <h2>🔎 What is Suspicious Behaviour?</h2>
+      </div>
+      <div class="card-body">
+        <ul class="behaviour-list">
+          <li>
+            <div class="b-icon">👁️</div>
+            <div>Unusual building surveillance such as noting exits and security in high patronage areas</div>
+          </li>
+          <li>
+            <div class="b-icon">📹</div>
+            <div>Unusual interest in security measures and routines, including over-inquisitive, unusual or persistent questions</div>
+          </li>
+          <li>
+            <div class="b-icon">🔄</div>
+            <div>Recurring visitors or loiterers with weak reasoning for their presence on site</div>
+          </li>
+          <li>
+            <div class="b-icon">😰</div>
+            <div>Anxious or nervous behaviour such as clock watching, shaking or pacing</div>
+          </li>
+          <li>
+            <div class="b-icon">🕵️</div>
+            <div>Attempting to remain inconspicuous, or leaving the area if noticed or avoiding security and CCTV</div>
+          </li>
+          <li>
+            <div class="b-icon">🚪</div>
+            <div>Attempting to gain illegitimate access to premises — impersonating staff, tailgating through controlled areas</div>
+          </li>
+          <li>
+            <div class="b-icon">🚗</div>
+            <div>Suspicious vehicle activity in close proximity to the site</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WHAT TO RECORD -->
+    <div class="card">
+      <div class="card-header yellow">
+        <h2>📋 What to Record</h2>
+      </div>
+      <div class="card-body">
+        <ul class="checklist">
+          <li><div class="check-box">✓</div><div>Time, date and place</div></li>
+          <li><div class="check-box">✓</div><div>Description of the person and clothing</div></li>
+          <li><div class="check-box">✓</div><div>What activity or suspicious behaviour the person was displaying</div></li>
+          <li><div class="check-box">✓</div><div>What was their reaction to you observing or speaking to them?</div></li>
+          <li><div class="check-box">✓</div><div>How did they enter and exit your site?</div></li>
+          <li><div class="check-box">✓</div><div>Vehicle description, location and registration details</div></li>
+          <li><div class="check-box">✓</div><div>Activities or items that person may have had a specific interest in</div></li>
+          <li><div class="check-box">✓</div><div>Were they captured on CCTV? Specify location</div></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Reporting</div>
+
+  <!-- REPORTING -->
+  <div class="reporting-card">
+    <div class="reporting-header">📞 Reporting Suspicious Activity</div>
+    <div class="reporting-body">
+      <div class="report-item">
+        <div class="report-label">Life-Threatening</div>
+        <div class="report-number">000</div>
+        <div class="report-name">Triple Zero — Police / Fire / Ambulance</div>
+      </div>
+      <div class="report-divider"></div>
+      <div class="report-item">
+        <div class="report-label">Suspicious Behaviour</div>
+        <div class="report-number">1800 333 000</div>
+        <div class="report-name">Crime Stoppers</div>
+      </div>
+      <div class="report-divider"></div>
+      <div class="report-item">
+        <div class="report-label">National Security</div>
+        <div class="report-number">1800 123 400</div>
+        <div class="report-name">National Security Hotline</div>
+      </div>
+      <div class="report-divider"></div>
+      <div class="report-item">
+        <div class="report-label">On Site</div>
+        <div class="report-note">Always <strong>report to your supervisor or manager</strong> after contacting external authorities.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer style="text-align:center;padding:20px;font-size:0.75rem;color:#999;letter-spacing:0.5px;">
+  AMS Security · Hostile Reconnaissance Guide · For internal use only
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escape. Hide. Tell. — Attack Response Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --navy: #1a2340;
+    --navy-mid: #243058;
+    --yellow: #f5c800;
+    --red: #cc2200;
+    --blue-grey: #7a8ab0;
+    --light-grey: #f0f2f5;
+    --border: #dde2ec;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light-grey);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  header { background: var(--navy); color: white; }
+  .header-stripe { background: var(--yellow); height: 8px; }
+  .header-inner {
+    padding: 18px 30px 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .back-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .back-link:hover { background: rgba(255,255,255,0.1); color: white; }
+  .header-titles { flex: 1; }
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+  .header-sub { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+  .threat-banner {
+    background: var(--red);
+    padding: 8px 30px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    text-transform: uppercase;
+  }
+  .threat-banner span { color: var(--yellow); }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 20px 50px;
+    display: grid;
+    gap: 20px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: -8px;
+  }
+
+  /* HERO STRIP */
+  .hero-strip {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.4s ease both;
+  }
+  .hero-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+  }
+  .hero-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .hero-circle.blue-grey { background: #b0bcd8; }
+  .hero-circle.yellow    { background: var(--yellow); }
+  .hero-circle.grey      { background: #c8cdd8; }
+
+  .hero-word {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+  }
+  .hero-word.yellow { color: var(--yellow); }
+  .hero-tagline {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+    max-width: 130px;
+  }
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: rgba(255,255,255,0.1);
+  }
+  .hero-bottom {
+    width: 100%;
+    text-align: center;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* THREE COLUMN ACTION CARDS */
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 680px) { .action-grid { grid-template-columns: 1fr; } }
+
+  .action-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    animation: fadeUp 0.4s ease both;
+  }
+  .action-card:nth-child(1) { animation-delay: 0.05s; }
+  .action-card:nth-child(2) { animation-delay: 0.12s; }
+  .action-card:nth-child(3) { animation-delay: 0.18s; }
+
+  .action-header {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .action-header.escape { background: #b0bcd8; color: var(--navy); }
+  .action-header.hide   { background: var(--yellow); color: var(--navy); }
+  .action-header.tell   { background: #c8cdd8; color: var(--navy); }
+
+  .action-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .action-body { padding: 14px 16px; }
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .action-list li {
+    display: flex;
+    gap: 9px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #333;
+    align-items: flex-start;
+  }
+  .action-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .action-card:nth-child(1) .action-list li::before { background: #7a8ab0; }
+  .action-card:nth-child(2) .action-list li::before { background: var(--yellow); }
+  .action-card:nth-child(3) .action-list li::before { background: #9aa0b0; }
+
+  /* BOTTOM TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .info-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    animation: fadeUp 0.4s ease both;
+  }
+  .info-card:nth-child(1) { animation-delay: 0.1s; }
+  .info-card:nth-child(2) { animation-delay: 0.18s; }
+
+  .info-header {
+    background: var(--navy);
+    color: white;
+    padding: 12px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .info-header.yellow-bg { background: var(--yellow); color: var(--navy); }
+
+  .info-body { padding: 14px 16px; }
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .info-list li {
+    display: flex;
+    gap: 9px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #333;
+    align-items: flex-start;
+  }
+  .info-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .flexible-banner {
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+  }
+  .flexible-note {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  /* POLICE NEED / CONTACTS */
+  .contacts-card {
+    background: var(--navy);
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fadeUp 0.4s ease 0.2s both;
+  }
+  .contacts-top {
+    background: var(--yellow);
+    color: var(--navy);
+    padding: 12px 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .contacts-body {
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+  }
+  .police-need {
+    padding-right: 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .police-need-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 10px;
+  }
+  .police-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .police-list li {
+    display: flex;
+    gap: 8px;
+    font-size: 0.83rem;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.7);
+    align-items: flex-start;
+  }
+  .police-list li::before {
+    content: '›';
+    color: var(--yellow);
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+
+  .hotlines { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+  @media (max-width: 640px) {
+    .police-need { padding-right: 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 14px; }
+    .hotlines { padding-left: 0; padding-top: 14px; }
+  }
+
+  .hotline-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 4px;
+  }
+  .hotline-item.red    { background: var(--red); }
+  .hotline-item.orange { background: #c05a00; }
+  .hotline-item.blue   { background: #1a3a80; }
+
+  .hotline-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .hotline-name {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+
+  /* VOICEOVER PLAYER */
+  .music-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1a1a1a;
+    border: 1px solid rgba(245,200,0,0.3);
+    border-radius: 50px;
+    padding: 8px 16px 8px 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    transition: border-color 0.2s;
+  }
+  .music-bar:hover { border-color: rgba(245,200,0,0.6); }
+  .music-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #f5c800; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0; transition: background 0.2s;
+  }
+  .music-btn:hover { background: #ffd700; }
+  .music-info { display: flex; flex-direction: column; gap: 2px; }
+  .music-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: #f5c800; white-space: nowrap;
+  }
+  .music-status { font-size: 0.65rem; color: rgba(255,255,255,0.32); white-space: nowrap; }
+  .music-volume input[type=range] {
+    -webkit-appearance: none; width: 60px; height: 3px;
+    background: rgba(255,255,255,0.15); border-radius: 2px;
+    outline: none; cursor: pointer;
+  }
+  .music-volume input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 12px; height: 12px;
+    border-radius: 50%; background: #f5c800; cursor: pointer;
+  }
+  .vol-icon { font-size: 0.75rem; opacity: 0.4; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <a href="index.html" class="back-link">← Back to Hub</a>
+    <div class="header-titles">
+      <div class="header-tag">Attack Response</div>
+      <h1>Escape. Hide. Tell.</h1>
+      <div class="header-sub">In the event of an attack — What you do matters.</div>
+    </div>
+  </div>
+  <div class="threat-banner">⚠ Life-threatening situations — call <span>Triple Zero (000) immediately</span></div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero-strip">
+    <div class="hero-action">
+      <div class="hero-circle blue-grey">🏃</div>
+      <div class="hero-word">Escape.</div>
+      <div class="hero-tagline">Move quickly and quietly away from danger</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-action">
+      <div class="hero-circle yellow">🤫</div>
+      <div class="hero-word yellow">Hide.</div>
+      <div class="hero-tagline">Stay out of sight and silence your phones</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-action">
+      <div class="hero-circle grey">📞</div>
+      <div class="hero-word">Tell.</div>
+      <div class="hero-tagline">Call police by dialling 000 when it is safe</div>
+    </div>
+    <div class="hero-bottom">What you do matters.</div>
+  </div>
+
+  <div class="section-label">Detailed Actions</div>
+
+  <!-- THREE ACTION CARDS -->
+  <div class="action-grid">
+
+    <div class="action-card">
+      <div class="action-header escape">
+        <div class="action-icon">🏃</div>
+        <div class="action-title">Escape.</div>
+      </div>
+      <div class="action-body">
+        <ul class="action-list">
+          <li>If you see a safe route, move quickly and quietly away from danger. Tell others not to enter the area, but only if it doesn't put you in danger.</li>
+          <li>Take your mobile phone. Do not let your belongings impede your escape.</li>
+          <li>Move as far away from the danger area as possible.</li>
+          <li>If you are unable to escape, HIDE.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header hide">
+        <div class="action-icon">🤫</div>
+        <div class="action-title">Hide.</div>
+      </div>
+      <div class="action-body">
+        <ul class="action-list">
+          <li>Stay out of sight and silence your phones.</li>
+          <li>Move away from doors and remain quiet.</li>
+          <li>Try and put a sturdy physical barrier between you and the offender.</li>
+          <li>Help others but only if it does not put you or others at risk.</li>
+          <li>Constantly review the situation and your options based on the best available information.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header tell">
+        <div class="action-icon">📞</div>
+        <div class="action-title">Tell.</div>
+      </div>
+      <div class="action-body">
+        <ul class="action-list">
+          <li>When it is safe to do so, call the police by dialling Triple Zero (000).</li>
+          <li>You may be asked about your location, surroundings, the attackers and the events that have occurred.</li>
+          <li>You may be asked to stay on the line and provide further information that the operator requests or if the situation changes.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Preparation & Police Response</div>
+
+  <div class="two-col">
+
+    <div class="info-card">
+      <div class="info-header yellow-bg">📋 What You Can Do to Prepare</div>
+      <div class="info-body">
+        <ul class="info-list">
+          <li>Be aware of your role and responsibilities within our emergency evacuation plans</li>
+          <li>Be aware of evacuation routes, including identifying alternative routes</li>
+          <li>Consider how you will communicate evacuation routes to people during an incident</li>
+          <li>Think about how you can apply the Escape, Hide, Tell principles to our business</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-header">🚔 Police Response</div>
+      <div class="info-body">
+        <div class="flexible-banner">⚠ Your plan must be flexible</div>
+        <div class="flexible-note">Every situation is different. You will need to make decisions when an attack is unfolding. Any attack can become a mixed mode attack very quickly.</div>
+        <ul class="info-list">
+          <li>When police arrive, follow their instructions. Their priority will be to deal with the immediate threat to prevent further injury.</li>
+          <li>You should follow all instructions given by emergency responders.</li>
+          <li>Police may not be able to distinguish you from the offenders.</li>
+          <li>You will be evacuated when it is safe to leave the area.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">What Police Need & Key Contacts</div>
+
+  <div class="contacts-card">
+    <div class="contacts-top">📞 What Police Need From You & Key Contacts</div>
+    <div class="contacts-body">
+      <div class="police-need">
+        <div class="police-need-title">What Police Need From You</div>
+        <ul class="police-list">
+          <li>Where you are / your location</li>
+          <li>Number, location and description of offenders</li>
+          <li>Type of weapons</li>
+          <li>Information on casualties</li>
+          <li>Security exits and access routes</li>
+          <li>Number of potential victims and their locations</li>
+        </ul>
+      </div>
+      <div class="hotlines">
+        <div class="hotline-item red">
+          <div>
+            <div class="hotline-num">000</div>
+          </div>
+          <div class="hotline-name"><strong style="color:white">Triple Zero</strong><br>For emergencies or life-threatening situations</div>
+        </div>
+        <div class="hotline-item orange">
+          <div class="hotline-name"><strong style="color:white">National Security Hotline</strong><br>1800 123 400 — Trained operators, you can remain anonymous</div>
+        </div>
+        <div class="hotline-item blue">
+          <div class="hotline-name"><strong style="color:white">Crime Stoppers</strong><br>1800 333 000 — To provide crime information anonymously</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer style="text-align:center;padding:20px;font-size:0.75rem;color:#999;letter-spacing:0.5px;">
+  AMS Security · Escape. Hide. Tell. Attack Response Guide · For internal use only · nationalsecurity.gov.au
+</footer>
+
+
+<audio id="bgMusic" loop>
+  <source src="escape.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-bar">
+  <button class="music-btn" id="playBtn" onclick="toggleMusic()" title="Play/Pause voiceover">▶</button>
+  <div class="music-info">
+    <div class="music-title">Escape. Hide. Tell.</div>
+    <div class="music-status" id="musicStatus">Loading...</div>
+  </div>
+  <div class="music-volume">
+    <span class="vol-icon">🔈</span>
+    <input type="range" min="0" max="1" step="0.05" value="0.4" oninput="setVolume(this.value)" title="Volume">
+    <span class="vol-icon">🔊</span>
+  </div>
+</div>
+
+<script>
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('playBtn');
+  const status = document.getElementById('musicStatus');
+
+  audio.volume = 0.4;
+
+  // Autoplay on first user interaction
+  function tryAutoplay() {
+    audio.play().catch(() => {});
+    document.removeEventListener('click', tryAutoplay);
+    document.removeEventListener('keydown', tryAutoplay);
+  }
+  audio.play().catch(() => {
+    document.addEventListener('click', tryAutoplay);
+    document.addEventListener('keydown', tryAutoplay);
+    status.textContent = 'Click anywhere to play';
+  });
+
+  audio.addEventListener('error', () => {
+    status.textContent = 'Audio file not found';
+    btn.style.opacity = '0.4';
+  });
+  audio.addEventListener('canplay', () => { status.textContent = 'Ready'; });
+  audio.addEventListener('play', () => { btn.textContent = '⏸'; status.textContent = 'Now playing'; });
+  audio.addEventListener('pause', () => { btn.textContent = '▶'; status.textContent = 'Paused'; });
+  audio.addEventListener('ended', () => { btn.textContent = '▶'; status.textContent = 'Finished'; });
+
+  function toggleMusic() {
+    if (audio.paused) { audio.play(); } else { audio.pause(); }
+  }
+  function setVolume(val) { audio.volume = val; }
+</script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOTALERTS — Unattended Article Assessment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --navy: #1a2340;
+    --navy-mid: #243058;
+    --yellow: #f5c800;
+    --red: #cc2200;
+    --orange: #e07000;
+    --green: #1a7a3c;
+    --white: #ffffff;
+    --light-grey: #f0f2f5;
+    --border: #dde2ec;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light-grey);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--navy);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-stripe {
+    background: var(--yellow);
+    height: 8px;
+  }
+  .header-inner {
+    padding: 18px 30px 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .back-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .back-link:hover { background: rgba(255,255,255,0.1); color: white; }
+  .header-titles { flex: 1; }
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  header h1 span { color: var(--yellow); }
+  .header-sub {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+  }
+  .threat-banner {
+    background: var(--red);
+    padding: 8px 30px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    text-transform: uppercase;
+  }
+  .threat-banner span { color: var(--yellow); }
+
+  /* MAIN */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 20px 50px;
+    display: grid;
+    gap: 22px;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: -10px;
+  }
+
+  /* HOTALERTS BLOCK */
+  .hotalerts-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--navy);
+    letter-spacing: 1px;
+    border-left: 6px solid var(--yellow);
+    padding-left: 14px;
+    margin-bottom: 4px;
+  }
+  .hotalerts-subtitle {
+    font-size: 0.85rem;
+    color: #666;
+    padding-left: 20px;
+  }
+
+  .hot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .hot-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    display: flex;
+    animation: fadeUp 0.4s ease both;
+  }
+  .hot-card:nth-child(1) { animation-delay: 0.05s; }
+  .hot-card:nth-child(2) { animation-delay: 0.10s; }
+  .hot-card:nth-child(3) { animation-delay: 0.15s; }
+  .hot-card:nth-child(4) { animation-delay: 0.20s; }
+  .hot-card:nth-child(5) { animation-delay: 0.25s; }
+  .hot-card:nth-child(6) { animation-delay: 0.30s; }
+  .hot-card:nth-child(7) { animation-delay: 0.35s; }
+  .hot-card:nth-child(8) { animation-delay: 0.40s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hot-letter {
+    background: var(--navy);
+    color: var(--yellow);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    width: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .hot-content { padding: 12px 14px; flex: 1; }
+  .hot-question {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 5px;
+    line-height: 1.2;
+  }
+  .hot-desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #444;
+  }
+  .hot-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+  }
+  .hot-tag.red { background: var(--red); color: white; }
+
+  /* FAC SECTION */
+  .fac-block {
+    background: var(--navy);
+    border-radius: 4px;
+    overflow: hidden;
+    color: white;
+    animation: fadeUp 0.4s ease 0.1s both;
+  }
+  .fac-header {
+    background: var(--yellow);
+    color: var(--navy);
+    padding: 12px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .fac-body {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .fac-step { display: flex; gap: 14px; align-items: flex-start; }
+  .fac-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--yellow);
+    line-height: 1;
+    width: 30px;
+    flex-shrink: 0;
+  }
+  .fac-step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  .fac-step-body { font-size: 0.83rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .fac-step-body li { margin-left: 14px; margin-bottom: 3px; }
+
+  /* ASSESSMENT RESULTS */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .result-card {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    animation: fadeUp 0.4s ease both;
+  }
+  .result-card:nth-child(1) { animation-delay: 0.1s; }
+  .result-card:nth-child(2) { animation-delay: 0.2s; }
+  .result-card:nth-child(3) { animation-delay: 0.3s; }
+
+  .result-header {
+    padding: 12px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+  }
+  .result-header.green  { background: var(--green); }
+  .result-header.orange { background: var(--orange); }
+  .result-header.red    { background: var(--red); }
+
+  .result-body {
+    background: white;
+    padding: 14px 16px;
+  }
+  .result-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .result-list li {
+    display: flex;
+    gap: 8px;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .result-list li::before {
+    content: '›';
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+  .result-header.green  ~ .result-body .result-list li::before { color: var(--green); }
+  .result-header.orange ~ .result-body .result-list li::before { color: var(--orange); }
+  .result-header.red    ~ .result-body .result-list li::before { color: var(--red); }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <a href="index.html" class="back-link">← Back to Hub</a>
+    <div class="header-titles">
+      <div class="header-tag">Security Procedure</div>
+      <h1><span>HOT</span>ALERTS — Unattended Article Assessment</h1>
+      <div class="header-sub">Guideline for assessing whether found property is suspicious</div>
+    </div>
+  </div>
+  <div class="threat-banner">⚠ Life-threatening situations should be reported to <span>the police immediately by calling 000</span></div>
+</header>
+
+<main>
+
+  <!-- HOTALERTS -->
+  <div class="section-label">Step 1 — Assess the Property</div>
+
+  <div>
+    <div class="hotalerts-title">H·O·T·A·L·E·R·T·S</div>
+    <div class="hotalerts-subtitle">Evaluate the unattended item against each criterion below</div>
+  </div>
+
+  <div class="hot-grid">
+
+    <div class="hot-card">
+      <div class="hot-letter">H</div>
+      <div class="hot-content">
+        <div class="hot-tag red">Caution</div>
+        <div class="hot-question">Is it Hidden?</div>
+        <div class="hot-desc">An unattended package that is intentionally hidden requires additional caution.</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">O</div>
+      <div class="hot-content">
+        <div class="hot-tag red">Caution</div>
+        <div class="hot-question">Is it Obviously Suspicious?</div>
+        <div class="hot-desc">An item with the characteristics of a bomb/hazardous material requires additional caution. This includes leakage of fuel oil, unusual smells, bulges or protruding wires, power source, batteries, LED lights, pieces of metal or glass (shrapnel).</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">T</div>
+      <div class="hot-content">
+        <div class="hot-tag">Consider</div>
+        <div class="hot-question">Is it Typical?</div>
+        <div class="hot-desc">An item that is not typically discarded or forgotten in that area requires additional caution.</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">A</div>
+      <div class="hot-content">
+        <div class="hot-tag red">Alert Level</div>
+        <div class="hot-question">Is the government Alert Level Elevated?</div>
+        <div class="hot-desc">When the National Terrorism Threat Level is increased, additional caution is required.</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">L</div>
+      <div class="hot-content">
+        <div class="hot-tag red">Caution</div>
+        <div class="hot-question">Is the Location in Receipt of a Threat?</div>
+        <div class="hot-desc">If a threat is received that a bomb or other dangerous device has been left in the centre, additional caution is required. Is the threat maker known or familiar? If yes, additional caution is required.</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">E</div>
+      <div class="hot-content">
+        <div class="hot-tag">Consider</div>
+        <div class="hot-question">Is it in a Sensitive Location?</div>
+        <div class="hot-desc">Is the property found in a non-public area, near critical infrastructure or structural supports, or near an area with potential for mass casualties (e.g. food court)? Additional caution is required.</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">R</div>
+      <div class="hot-content">
+        <div class="hot-tag">Consider</div>
+        <div class="hot-question">Reconnaissance</div>
+        <div class="hot-desc">Has suspicious activity been noted in the area recently? Could this be a reconnaissance exercise?</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">T</div>
+      <div class="hot-content">
+        <div class="hot-tag">Consider</div>
+        <div class="hot-question">Timing</div>
+        <div class="hot-desc">Environmental factors — current events, time of day, day of week, holiday, anniversary of terrorist attacks. Does the timing raise concern?</div>
+      </div>
+    </div>
+
+    <div class="hot-card">
+      <div class="hot-letter">S</div>
+      <div class="hot-content">
+        <div class="hot-tag red">Caution</div>
+        <div class="hot-question">Is the property found in a Sensitive location?</div>
+        <div class="hot-desc">If an unattended package is found in a non-public area, near critical infrastructure or structural supports, or near an area with potential for mass casualties (e.g. food court), additional caution is required.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GET THE FACTS -->
+  <div class="section-label">Step 2 — Get the F.A.C.T.S.</div>
+
+  <div class="fac-block">
+    <div class="fac-header">Get the F.A.C.T.S. — 3 Steps to Assess Found Property</div>
+    <div class="fac-body">
+      <div class="fac-step">
+        <div class="fac-num">1st</div>
+        <div>
+          <div class="fac-step-title">Find the Owner</div>
+          <div class="fac-step-body">
+            <ul>
+              <li>Interview people in the vicinity</li>
+              <li>Review CCTV</li>
+              <li>Every object has an owner — find the owner and avoid disruption</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="fac-step">
+        <div class="fac-num">2nd</div>
+        <div>
+          <div class="fac-step-title">Assess the Property</div>
+          <div class="fac-step-body">
+            <ul>
+              <li>Follow the HOTALERTS guidelines above</li>
+              <li>Gather all evidence of the placement of the item, including CCTV showing activities of any person associated with the item</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="fac-step">
+        <div class="fac-num">3rd</div>
+        <div>
+          <div class="fac-step-title">Consider the Situation</div>
+          <div class="fac-step-body">
+            <ul>
+              <li>Conduct of the owner</li>
+              <li>Environmental factors</li>
+              <li>Other suspicious factors</li>
+              <li>Information from authorities</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT RESULTS -->
+  <div class="section-label">Step 3 — Act on Assessment Results</div>
+
+  <div class="results-grid">
+
+    <!-- NOT SUSPICIOUS -->
+    <div class="result-card">
+      <div class="result-header green">✔ If the Item Is NOT Suspicious</div>
+      <div class="result-body">
+        <ul class="result-list">
+          <li>Review CCTV to satisfy yourself this was not a reconnaissance exercise</li>
+          <li>If suspicious activity identified, report it to the local police, Crime Stoppers or the National Security Hotline</li>
+          <li>If an owner cannot be identified, remove the article and follow lost property procedures</li>
+          <li>Consider submitting an intelligence report to police</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- UNDECIDED -->
+    <div class="result-card">
+      <div class="result-header orange">⚠ If You Are Undecided</div>
+      <div class="result-body">
+        <ul class="result-list">
+          <li>Do not TOUCH, TILT or TAMPER</li>
+          <li>Do not use mobile phones or radios within 25 metres (electronic frequencies may cause a device to detonate)</li>
+          <li>Inform the supervisor</li>
+          <li>Cordon off the area and move people away</li>
+          <li>If chemical, biological, radioactive or nuclear (CBRN) suspected — evacuate, isolate exposed persons, turn off heating, ventilation and cooling (HVAC)</li>
+          <li>Advise security who will assess the need to alert emergency services</li>
+          <li>Call Triple Zero (000) and follow their instruction</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SUSPICIOUS -->
+    <div class="result-card">
+      <div class="result-header red">🚨 If Assessed as Suspicious</div>
+      <div class="result-body">
+        <ul class="result-list">
+          <li>Do not TOUCH, TILT or TAMPER</li>
+          <li>Do not use mobile phones or radios within 25 metres radius (electronic frequencies may cause a device to detonate)</li>
+          <li>If the suspicious item is a vehicle — evacuate at least 500 metres</li>
+          <li>If CBRN suspected — evacuate, isolate exposed persons, turn off HVAC</li>
+          <li>Cordon off immediate area and move people away</li>
+          <li>Call Triple Zero (000)</li>
+          <li>Advise security</li>
+          <li>Respond to the directions of emergency services</li>
+          <li>Gather all evidence of placement of item including CCTV</li>
+          <li>Evacuate area at least 100 metres from the item</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>AMS Security · HOTALERTS Unattended Article Assessment · For internal use only</footer>
+
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Level Inspection Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --navy: #1a2340;
+    --navy-mid: #243058;
+    --yellow: #f5c800;
+    --red: #cc2200;
+    --white: #ffffff;
+    --light-grey: #f0f2f5;
+    --text: #1a2340;
+    --border: #dde2ec;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light-grey);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-inner {
+    display: flex;
+    align-items: stretch;
+    min-height: 90px;
+  }
+  .header-accent {
+    background: var(--yellow);
+    width: 10px;
+    flex-shrink: 0;
+  }
+  .header-content {
+    padding: 20px 30px;
+    flex: 1;
+  }
+  .back-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    margin: 16px 20px 0 20px;
+    display: inline-block;
+  }
+  .back-link:hover { background: rgba(255,255,255,0.1); color: white; }
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 6px;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .header-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+  }
+  .threat-banner {
+    background: var(--red);
+    padding: 10px 30px 10px 40px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    text-transform: uppercase;
+  }
+  .threat-banner span {
+    color: var(--yellow);
+  }
+
+  /* MAIN LAYOUT */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+    display: grid;
+    gap: 20px;
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    border-left: 5px solid var(--navy);
+    animation: fadeUp 0.4s ease both;
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card.yellow-accent { border-left-color: var(--yellow); }
+  .card.red-accent    { border-left-color: var(--red); }
+
+  .card-header {
+    background: var(--navy);
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card.yellow-accent .card-header { background: var(--navy-mid); }
+  .card.red-accent .card-header    { background: var(--red); }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+  .card-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  /* INFO GRID */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 620px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+  /* BULLET LISTS */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bullet-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .bullet-list li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--yellow);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* STEP LIST */
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* FACTS ACRONYM */
+  .facts-grid {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 6px 12px;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .facts-letter {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--red);
+    text-align: center;
+    line-height: 1;
+    border: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 2px 0;
+  }
+  .facts-def {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .facts-desc {
+    grid-column: 2;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: -4px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.4;
+  }
+  .facts-grid > :last-child { border-bottom: none; }
+
+  /* SCHEDULE CHIPS */
+  .schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--light-grey);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+  .schedule-icon {
+    font-size: 1.2rem;
+    width: 28px;
+    text-align: center;
+  }
+  .schedule-label {
+    font-weight: 600;
+    color: var(--navy);
+    width: 100px;
+    flex-shrink: 0;
+  }
+
+  /* RESPONSE NOTE */
+  .response-note {
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    margin-top: 16px;
+    line-height: 1.6;
+    border-left: 4px solid var(--yellow);
+  }
+  .response-note strong {
+    color: var(--yellow);
+  }
+
+  /* ITALIC NOTE */
+  .note-italic {
+    font-style: italic;
+    font-size: 0.82rem;
+    color: #666;
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="threat-banner">
+    ⚠ Life-threatening situations should be reported to <span>the police immediately</span>
+  </div>
+  <div style="padding:12px 20px 0;">
+    <a href="index.html" class="back-link">← Back to Hub</a>
+  </div>
+  <div class="header-inner">
+    <div class="header-accent"></div>
+    <div class="header-content">
+      <div class="header-tag">Security Procedure</div>
+      <h1>White Level Inspection Guide</h1>
+      <div class="header-sub">Staff Reference — Your response will depend on the circumstances</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- WHAT IS IT -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <h2>How Are White Level Inspections Conducted?</h2>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.9rem; line-height:1.6; margin-bottom:14px;">
+        A white level inspection is an inspection by <strong>all staff members</strong> of their respective workplace for any articles that are unusual, suspicious, or unable to be accounted for.
+      </p>
+      <div class="response-note">
+        <strong>Important:</strong> It is not just a search for bombs.
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY / WHO -->
+  <div class="info-grid">
+
+    <div class="card yellow-accent">
+      <div class="card-header">
+        <div class="card-icon">❓</div>
+        <h2>Why Are They Necessary?</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.85rem; margin-bottom:12px;">White level inspections are conducted so that all staff and management can be confident their workplace is secure. A secure workplace will:</p>
+        <ul class="bullet-list">
+          <li>Minimise potential disruptions to work activities and productivity</li>
+          <li>Assist police and emergency services to determine the most appropriate response to an unattended item</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card yellow-accent">
+      <div class="card-header">
+        <div class="card-icon">👥</div>
+        <h2>Who Conducts a White Level Inspection?</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.88rem; line-height:1.6;">
+          The people in the <strong>best position</strong> to conduct white level inspections are the people who know and work within the area.
+        </p>
+        <p style="font-size:0.85rem; line-height:1.6; margin-top:10px; color:#555;">
+          Staff are assigned to inspect their own workplace area, as well as common areas such as foyers, bathrooms, and parking areas.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WHERE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <h2>Where Are White Level Inspections Conducted?</h2>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.9rem; line-height:1.6; margin-bottom:14px;">
+        A white level inspection plan devised by management should cover <strong>all areas</strong> of the workplace and take into account variables such as:
+      </p>
+      <ul class="bullet-list">
+        <li>Shift considerations, emergency maintenance and cleaning schedules</li>
+        <li>Staff will inspect their own workplace area and nominated staff should be assigned to inspect common areas, such as foyers, bathrooms and parking areas to ensure they are not overlooked</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WHEN -->
+  <div class="card yellow-accent">
+    <div class="card-header">
+      <div class="card-icon">🕐</div>
+      <h2>When Are White Level Inspections Conducted?</h2>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.88rem; margin-bottom:14px; font-weight:600;">White level inspections should be undertaken:</p>
+      <div class="schedule">
+        <div class="schedule-item">
+          <div class="schedule-icon">📅</div>
+          <div class="schedule-label">Routinely</div>
+          <div>Each day upon arrival at work</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-icon">🎲</div>
+          <div class="schedule-label">Randomly</div>
+          <div>As determined by the manager</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-icon">📣</div>
+          <div class="schedule-label">On Request</div>
+          <div>At the request of management</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW TO CONDUCT -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✅</div>
+      <h2>How Are White Level Inspections Conducted?</h2>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.88rem; margin-bottom:16px;">When conducting a white level inspection the following steps should be undertaken:</p>
+      <ol class="step-list">
+        <li>
+          <div class="step-num">1</div>
+          <div>Conduct a visual check of the route to your work area and work station. Remember to check all drawers and cupboards that you are responsible for.</div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div>In addition to your own work area, inspect any other areas that may have been assigned to you — for example, a bathroom or kitchen.</div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div>Once your inspection has been completed, report to your supervisor or manager. You may then resume normal duties.</div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div>Supervisors will then report the results of the inspection in accordance with established procedures. A record should be kept of the inspection including the area where an inspection was conducted, the date and the outcome of the inspection.</div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- UNATTENDED ARTICLE -->
+  <div class="card red-accent">
+    <div class="card-header">
+      <div class="card-icon">🚨</div>
+      <h2>What Do I Do If I Find an Unattended Article?</h2>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.88rem; margin-bottom:16px;">
+        If the article does not belong where you found it — <strong>stop your inspection</strong>. Take actions to identify whether the article is suspicious using the <strong>F.A.C.T.S.</strong> method:
+      </p>
+
+      <div class="facts-grid">
+        <div class="facts-letter">F</div>
+        <div class="facts-def">Find the Owner</div>
+        <div class="facts-desc">Who put it there? Check CCTV, interview people in the vicinity. Every item has an owner.</div>
+
+        <div class="facts-letter">A</div>
+        <div class="facts-def">Assess the Property</div>
+        <div class="facts-desc">HOTALERTS — evaluate the physical characteristics of the item.</div>
+
+        <div class="facts-letter">C</div>
+        <div class="facts-def">Consider the Situation</div>
+        <div class="facts-desc">Relevance is the conduct of a suspect, suspicious circumstances, information from authorities.</div>
+
+        <div class="facts-letter">T</div>
+        <div class="facts-def">Think</div>
+        <div class="facts-desc">Environmental factors: current events, time of day, day of week, holiday, anniversary of other terrorist attacks.</div>
+
+        <div class="facts-letter">S</div>
+        <div class="facts-def">Suspicious?</div>
+        <div class="facts-desc">Get the F.A.C.T.S. — determine whether the article is suspicious and act accordingly.</div>
+      </div>
+
+      <div class="response-note" style="margin-top:18px;">
+        <strong>Reminder:</strong> Life-threatening situations must be reported to <strong>the police</strong> immediately by calling emergency services.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>AMS Security · White Level Inspection Reference Guide · For internal use only</footer>
+
+</body>
+</html>
