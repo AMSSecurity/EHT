@@ -408,49 +408,6 @@
     color: rgba(255,255,255,0.75);
     line-height: 1.4;
   }
-
-
-  /* VOICEOVER PLAYER */
-  .music-bar {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1a1a1a;
-    border: 1px solid rgba(245,200,0,0.3);
-    border-radius: 50px;
-    padding: 8px 16px 8px 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 999;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    transition: border-color 0.2s;
-  }
-  .music-bar:hover { border-color: rgba(245,200,0,0.6); }
-  .music-btn {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #f5c800; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0; transition: background 0.2s;
-  }
-  .music-btn:hover { background: #ffd700; }
-  .music-info { display: flex; flex-direction: column; gap: 2px; }
-  .music-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
-    text-transform: uppercase; color: #f5c800; white-space: nowrap;
-  }
-  .music-status { font-size: 0.65rem; color: rgba(255,255,255,0.32); white-space: nowrap; }
-  .music-volume input[type=range] {
-    -webkit-appearance: none; width: 60px; height: 3px;
-    background: rgba(255,255,255,0.15); border-radius: 2px;
-    outline: none; cursor: pointer;
-  }
-  .music-volume input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 12px; height: 12px;
-    border-radius: 50%; background: #f5c800; cursor: pointer;
-  }
-  .vol-icon { font-size: 0.75rem; opacity: 0.4; }
 </style>
 </head>
 <body>
@@ -473,19 +430,39 @@
   <!-- HERO -->
   <div class="hero-strip">
     <div class="hero-action">
-      <div class="hero-circle blue-grey">🏃</div>
+      <div class="hero-circle blue-grey">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="42" height="42">
+          <circle cx="38" cy="10" r="5.5" fill="#1a2340"/>
+          <line x1="38" y1="16" x2="31" y2="32" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          <line x1="31" y1="32" x2="19" y2="44" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          <line x1="31" y1="32" x2="44" y2="42" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="16" x2="46" y2="26" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="16" x2="27" y2="23" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="hero-word">Escape.</div>
       <div class="hero-tagline">Move quickly and quietly away from danger</div>
     </div>
     <div class="hero-divider"></div>
     <div class="hero-action">
-      <div class="hero-circle yellow">🤫</div>
+      <div class="hero-circle yellow">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="42" height="42">
+          <circle cx="30" cy="11" r="6" fill="#1a2340"/>
+          <path d="M21 22 Q30 17 39 22 L41 39 Q30 44 19 39 Z" fill="#1a2340"/>
+          <line x1="19" y1="39" x2="15" y2="52" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          <line x1="41" y1="39" x2="45" y2="52" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="hero-word yellow">Hide.</div>
       <div class="hero-tagline">Stay out of sight and silence your phones</div>
     </div>
     <div class="hero-divider"></div>
     <div class="hero-action">
-      <div class="hero-circle grey">📞</div>
+      <div class="hero-circle grey">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="42" height="42">
+          <path d="M13 13 C13 13 18 8 23 13 L27 20 C28.5 22.5 26 25 24.5 26 C22 28.5 29 37 31 38 C33.5 40 36 37.5 37.5 36 L44 40 C49 43.5 44 48 44 48 C35 55 6 27 13 13 Z" fill="#1a2340"/>
+        </svg>
+      </div>
       <div class="hero-word">Tell.</div>
       <div class="hero-tagline">Call police by dialling 000 when it is safe</div>
     </div>
@@ -499,7 +476,16 @@
 
     <div class="action-card">
       <div class="action-header escape">
-        <div class="action-icon">🏃</div>
+        <div class="action-icon">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <circle cx="38" cy="10" r="5.5" fill="#1a2340"/>
+            <line x1="38" y1="16" x2="31" y2="32" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+            <line x1="31" y1="32" x2="19" y2="44" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+            <line x1="31" y1="32" x2="44" y2="42" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+            <line x1="38" y1="16" x2="46" y2="26" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+            <line x1="38" y1="16" x2="27" y2="23" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div class="action-title">Escape.</div>
       </div>
       <div class="action-body">
@@ -514,7 +500,14 @@
 
     <div class="action-card">
       <div class="action-header hide">
-        <div class="action-icon">🤫</div>
+        <div class="action-icon">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <circle cx="30" cy="11" r="6" fill="#1a2340"/>
+            <path d="M21 22 Q30 17 39 22 L41 39 Q30 44 19 39 Z" fill="#1a2340"/>
+            <line x1="19" y1="39" x2="15" y2="52" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+            <line x1="41" y1="39" x2="45" y2="52" stroke="#1a2340" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div class="action-title">Hide.</div>
       </div>
       <div class="action-body">
@@ -530,7 +523,11 @@
 
     <div class="action-card">
       <div class="action-header tell">
-        <div class="action-icon">📞</div>
+        <div class="action-icon">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M13 13 C13 13 18 8 23 13 L27 20 C28.5 22.5 26 25 24.5 26 C22 28.5 29 37 31 38 C33.5 40 36 37.5 37.5 36 L44 40 C49 43.5 44 48 44 48 C35 55 6 27 13 13 Z" fill="#1a2340"/>
+          </svg>
+        </div>
         <div class="action-title">Tell.</div>
       </div>
       <div class="action-body">
@@ -616,55 +613,7 @@
 </footer>
 
 
-<audio id="bgMusic" loop>
-  <source src="escape.mp3" type="audio/mpeg">
-</audio>
 
-<div class="music-bar">
-  <button class="music-btn" id="playBtn" onclick="toggleMusic()" title="Play/Pause voiceover">▶</button>
-  <div class="music-info">
-    <div class="music-title">Escape. Hide. Tell.</div>
-    <div class="music-status" id="musicStatus">Loading...</div>
-  </div>
-  <div class="music-volume">
-    <span class="vol-icon">🔈</span>
-    <input type="range" min="0" max="1" step="0.05" value="0.4" oninput="setVolume(this.value)" title="Volume">
-    <span class="vol-icon">🔊</span>
-  </div>
-</div>
 
-<script>
-  const audio = document.getElementById('bgMusic');
-  const btn = document.getElementById('playBtn');
-  const status = document.getElementById('musicStatus');
-
-  audio.volume = 0.4;
-
-  // Autoplay on first user interaction
-  function tryAutoplay() {
-    audio.play().catch(() => {});
-    document.removeEventListener('click', tryAutoplay);
-    document.removeEventListener('keydown', tryAutoplay);
-  }
-  audio.play().catch(() => {
-    document.addEventListener('click', tryAutoplay);
-    document.addEventListener('keydown', tryAutoplay);
-    status.textContent = 'Click anywhere to play';
-  });
-
-  audio.addEventListener('error', () => {
-    status.textContent = 'Audio file not found';
-    btn.style.opacity = '0.4';
-  });
-  audio.addEventListener('canplay', () => { status.textContent = 'Ready'; });
-  audio.addEventListener('play', () => { btn.textContent = '⏸'; status.textContent = 'Now playing'; });
-  audio.addEventListener('pause', () => { btn.textContent = '▶'; status.textContent = 'Paused'; });
-  audio.addEventListener('ended', () => { btn.textContent = '▶'; status.textContent = 'Finished'; });
-
-  function toggleMusic() {
-    if (audio.paused) { audio.play(); } else { audio.pause(); }
-  }
-  function setVolume(val) { audio.volume = val; }
-</script>
 </body>
 </html>

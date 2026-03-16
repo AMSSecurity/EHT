@@ -176,6 +176,83 @@
   .card-white .card-foot   { color: #ffffff; border-top: 1px solid rgba(255,255,255,0.1); }
   .card-white .card-icon   { background: rgba(255,255,255,0.08); }
 
+  /* EHT POSTER CARD */
+  .eht-card { text-decoration: none; }
+  .eht-body {
+    padding: 24px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .eht-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+  }
+  .eht-icons-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 4vw, 40px);
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  .eht-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    max-width: 160px;
+  }
+  .eht-circle {
+    width: clamp(70px, 18vw, 100px);
+    height: clamp(70px, 18vw, 100px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .eht-circle svg { width: 55%; height: 55%; }
+  .eht-circle-white { background: #ffffff; }
+  .eht-circle-yellow { background: #f5c800; }
+  .eht-circle-grey   { background: #a0a0a0; }
+  .eht-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.55rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .eht-label-white { color: #ffffff; }
+  .eht-label-yellow {
+    color: #000;
+    background: #f5c800;
+    padding: 1px 8px 2px;
+    border-radius: 2px;
+  }
+  .eht-desc {
+    font-size: clamp(0.72rem, 2vw, 0.85rem);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    line-height: 1.45;
+  }
+  .eht-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
   /* SHARED INNER ELEMENTS */
   .card-body {
     padding: 18px 20px 14px;
@@ -267,48 +344,6 @@
     letter-spacing: 0.5px;
     border-top: 1px solid rgba(255,255,255,0.04);
   }
-
-  /* MUSIC PLAYER */
-  .music-bar {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1a1a1a;
-    border: 1px solid rgba(245,200,0,0.3);
-    border-radius: 50px;
-    padding: 8px 16px 8px 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 999;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    transition: border-color 0.2s;
-  }
-  .music-bar:hover { border-color: rgba(245,200,0,0.6); }
-  .music-btn {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #f5c800; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0; transition: background 0.2s;
-  }
-  .music-btn:hover { background: #ffd700; }
-  .music-info { display: flex; flex-direction: column; gap: 2px; }
-  .music-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
-    text-transform: uppercase; color: #f5c800; white-space: nowrap;
-  }
-  .music-status { font-size: 0.65rem; color: rgba(255,255,255,0.32); white-space: nowrap; }
-  .music-volume input[type=range] {
-    -webkit-appearance: none; width: 60px; height: 3px;
-    background: rgba(255,255,255,0.15); border-radius: 2px;
-    outline: none; cursor: pointer;
-  }
-  .music-volume input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 12px; height: 12px;
-    border-radius: 50%; background: #f5c800; cursor: pointer;
-  }
-  .vol-icon { font-size: 0.75rem; opacity: 0.4; }
 </style>
 </head>
 <body>
@@ -325,19 +360,58 @@
 
   <div class="section-label">Priority Response</div>
 
-  <!-- 1. ESCAPE HIDE TELL — full width yellow -->
-  <a href="escape_hide_tell_guide.html" class="guide-card card-yellow">
+  <!-- 1. ESCAPE HIDE TELL — full width yellow poster style -->
+  <a href="escape_hide_tell_guide.html" class="guide-card card-yellow eht-card">
     <div class="priority-banner">⚠ Priority Guide — In the Event of an Attack</div>
     <div class="colour-bar"></div>
-    <div class="card-body">
-      <div class="card-icon">🏃</div>
-      <div class="card-texts">
-        <div class="card-cat">Attack Response</div>
-        <div class="card-title">Escape. Hide. Tell.</div>
-        <div class="card-desc">In the event of an attack — detailed actions for each phase, police response, preparation tips, and key emergency contact numbers.</div>
+    <div class="eht-body">
+      <div class="eht-headline">In the event of an attack</div>
+      <div class="eht-icons-row">
+        <!-- ESCAPE -->
+        <div class="eht-item">
+          <div class="eht-circle eht-circle-white">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="54" height="54">
+              <!-- Running figure -->
+              <circle cx="36" cy="10" r="5" fill="#1a1a1a"/>
+              <line x1="36" y1="15" x2="30" y2="30" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="30" y1="30" x2="20" y2="42" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="30" y1="30" x2="42" y2="40" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="36" y1="15" x2="44" y2="25" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="36" y1="15" x2="26" y2="22" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eht-label eht-label-white">ESCAPE.</div>
+          <div class="eht-desc">Move quickly and quietly away from danger.</div>
+        </div>
+        <!-- HIDE -->
+        <div class="eht-item">
+          <div class="eht-circle eht-circle-yellow">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="54" height="54">
+              <!-- Hiding/crouching figure -->
+              <circle cx="30" cy="12" r="6" fill="#1a1a1a"/>
+              <path d="M22 22 Q30 18 38 22 L40 38 Q30 42 20 38 Z" fill="#1a1a1a"/>
+              <line x1="20" y1="38" x2="16" y2="50" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="40" y1="38" x2="44" y2="50" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eht-label eht-label-yellow">HIDE.</div>
+          <div class="eht-desc">Stay out of sight and silence your phones.</div>
+        </div>
+        <!-- TELL -->
+        <div class="eht-item">
+          <div class="eht-circle eht-circle-grey">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+              <!-- Phone handset -->
+              <path d="M14 14 C14 14 18 10 22 14 L26 20 C27 22 25 24 24 25 C22 27 28 35 30 36 C32 38 34 36 36 35 L42 39 C46 42 42 46 42 46 C34 52 8 26 14 14 Z" fill="#1a1a1a"/>
+            </svg>
+          </div>
+          <div class="eht-label eht-label-white">TELL.</div>
+          <div class="eht-desc">Call the police by dialling 000 when it is safe.</div>
+        </div>
       </div>
+      <div class="eht-tagline">What you do matters.</div>
     </div>
-    <div class="card-foot"><span>Open Guide</span><span>→</span></div>
+    <div class="card-foot"><span>Open Full Guide</span><span>→</span></div>
   </a>
 
   <div class="section-label">Threat & Emergency Guides</div>
@@ -422,74 +496,5 @@
 <footer>AMS Security · Internal Use Only · All guides are staff reference documents</footer>
 
 
-<!--
-  ============================================================
-  BACKGROUND MUSIC — HOW TO ADD YOUR AUDIO FILE:
-  1. Place your MP3 file in the same folder as this HTML file
-  2. Rename your file to: background-music.mp3
-     (or update the src attribute in the <audio> tag below)
-  3. Supported formats: MP3, OGG, WAV
-  ============================================================
--->
-<audio id="bgMusic" loop autoplay>
-  <source src="background-music.mp3" type="audio/mpeg">
-  <!-- Add a fallback: <source src="background-music.ogg" type="audio/ogg"> -->
-</audio>
-
-<div class="music-bar">
-  <button class="music-btn" id="playBtn" onclick="toggleMusic()" title="Play/Pause music">▶</button>
-  <div class="music-info">
-    <div class="music-title" id="musicTitle">Background Music</div>
-    <div class="music-status" id="musicStatus">Place background-music.mp3 in folder</div>
-  </div>
-  <div class="music-volume">
-    <span class="vol-icon">🔈</span>
-    <input type="range" min="0" max="1" step="0.05" value="0.4" oninput="setVolume(this.value)" title="Volume">
-    <span class="vol-icon">🔊</span>
-  </div>
-</div>
-
-<script>
-  const audio = document.getElementById('bgMusic');
-  const btn = document.getElementById('playBtn');
-  const status = document.getElementById('musicStatus');
-
-  audio.volume = 0.4;
-
-  // Check if file exists by listening for errors
-  audio.addEventListener('error', () => {
-    status.textContent = 'Add background-music.mp3 to folder';
-    btn.style.opacity = '0.4';
-    btn.title = 'No audio file found — see instructions in HTML';
-  });
-
-  audio.addEventListener('canplay', () => {
-    status.textContent = 'Ready to play';
-  });
-
-  audio.addEventListener('play', () => {
-    btn.textContent = '⏸';
-    status.textContent = 'Now playing';
-  });
-
-  audio.addEventListener('pause', () => {
-    btn.textContent = '▶';
-    status.textContent = 'Paused';
-  });
-
-  function toggleMusic() {
-    if (audio.paused) {
-      audio.play().catch(() => {
-        status.textContent = 'Add background-music.mp3 to folder';
-      });
-    } else {
-      audio.pause();
-    }
-  }
-
-  function setVolume(val) {
-    audio.volume = val;
-  }
-</script>
 </body>
 </html>

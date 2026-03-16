@@ -133,75 +133,103 @@
     padding-left: 20px;
   }
 
-  .hot-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-  }
-
-  .hot-card {
+  /* VERTICAL ACRONYM LAYOUT */
+  .acronym-block {
     background: white;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    box-shadow: 0 2px 10px rgba(26,35,64,0.10);
     display: flex;
     animation: fadeUp 0.4s ease both;
   }
-  .hot-card:nth-child(1) { animation-delay: 0.05s; }
-  .hot-card:nth-child(2) { animation-delay: 0.10s; }
-  .hot-card:nth-child(3) { animation-delay: 0.15s; }
-  .hot-card:nth-child(4) { animation-delay: 0.20s; }
-  .hot-card:nth-child(5) { animation-delay: 0.25s; }
-  .hot-card:nth-child(6) { animation-delay: 0.30s; }
-  .hot-card:nth-child(7) { animation-delay: 0.35s; }
-  .hot-card:nth-child(8) { animation-delay: 0.40s; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* Left column — stacked letters */
+  .acronym-letters {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
   }
-
-  .hot-letter {
+  .acronym-letter-cell {
     background: var(--navy);
     color: var(--yellow);
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 2rem;
     font-weight: 900;
-    width: 52px;
+    width: 58px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    min-height: 72px;
   }
-  .hot-content { padding: 12px 14px; flex: 1; }
-  .hot-question {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--navy);
-    margin-bottom: 5px;
-    line-height: 1.2;
+  .acronym-letter-cell:last-child { border-bottom: none; }
+
+  /* Right column — rows of content */
+  .acronym-rows {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
-  .hot-desc {
-    font-size: 0.82rem;
-    line-height: 1.55;
-    color: #444;
+  .acronym-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eef0f5;
+    min-height: 72px;
+    animation: fadeUp 0.4s ease both;
+  }
+  .acronym-row:last-child { border-bottom: none; }
+  .acronym-row:nth-child(1) { animation-delay: 0.05s; }
+  .acronym-row:nth-child(2) { animation-delay: 0.10s; }
+  .acronym-row:nth-child(3) { animation-delay: 0.15s; }
+  .acronym-row:nth-child(4) { animation-delay: 0.20s; }
+  .acronym-row:nth-child(5) { animation-delay: 0.25s; }
+  .acronym-row:nth-child(6) { animation-delay: 0.30s; }
+  .acronym-row:nth-child(7) { animation-delay: 0.35s; }
+  .acronym-row:nth-child(8) { animation-delay: 0.40s; }
+  .acronym-row:nth-child(9) { animation-delay: 0.45s; }
+
+  .acronym-row-tag {
+    flex-shrink: 0;
+    width: 72px;
   }
   .hot-tag {
     display: inline-block;
     background: var(--yellow);
     color: var(--navy);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 2px 7px;
     border-radius: 2px;
-    margin-bottom: 5px;
+    white-space: nowrap;
   }
   .hot-tag.red { background: var(--red); color: white; }
+
+  .acronym-row-content { flex: 1; }
+  .hot-question {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 3px;
+    line-height: 1.2;
+  }
+  .hot-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
   /* FAC SECTION */
   .fac-block {
@@ -340,89 +368,85 @@
     <div class="hotalerts-subtitle">Evaluate the unattended item against each criterion below</div>
   </div>
 
-  <div class="hot-grid">
-
-    <div class="hot-card">
-      <div class="hot-letter">H</div>
-      <div class="hot-content">
-        <div class="hot-tag red">Caution</div>
-        <div class="hot-question">Is it Hidden?</div>
-        <div class="hot-desc">An unattended package that is intentionally hidden requires additional caution.</div>
+  <div class="acronym-block">
+    <!-- Vertical letters column -->
+    <div class="acronym-letters">
+      <div class="acronym-letter-cell">H</div>
+      <div class="acronym-letter-cell">O</div>
+      <div class="acronym-letter-cell">T</div>
+      <div class="acronym-letter-cell">A</div>
+      <div class="acronym-letter-cell">L</div>
+      <div class="acronym-letter-cell">E</div>
+      <div class="acronym-letter-cell">R</div>
+      <div class="acronym-letter-cell">T</div>
+      <div class="acronym-letter-cell">S</div>
+    </div>
+    <!-- Horizontal content rows -->
+    <div class="acronym-rows">
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag red">Caution</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is it Hidden?</div>
+          <div class="hot-desc">An unattended package that is intentionally hidden requires additional caution.</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag red">Caution</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is it Obviously Suspicious?</div>
+          <div class="hot-desc">Characteristics of a bomb or hazardous material — leakage of fuel oil, unusual smells, bulges or protruding wires, power source, batteries, LED lights, pieces of metal or glass (shrapnel).</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag">Consider</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is it Typical?</div>
+          <div class="hot-desc">An item that is not typically discarded or forgotten in that area requires additional caution.</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag red">Alert Level</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is the government Alert Level Elevated?</div>
+          <div class="hot-desc">When the National Terrorism Threat Level is increased, additional caution is required.</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag red">Caution</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is the Location in Receipt of a Threat?</div>
+          <div class="hot-desc">If a threat is received that a bomb or dangerous device has been left in the centre. Is the threat maker known or familiar? If yes, additional caution is required.</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag">Consider</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is it in a Sensitive Location?</div>
+          <div class="hot-desc">Property found in a non-public area, near critical infrastructure or structural supports, or near an area with potential for mass casualties (e.g. food court).</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag">Consider</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Reconnaissance</div>
+          <div class="hot-desc">Has suspicious activity been noted in the area recently? Could this be a reconnaissance exercise?</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag">Consider</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Timing</div>
+          <div class="hot-desc">Environmental factors — current events, time of day, day of week, holiday, anniversary of terrorist attacks. Does the timing raise concern?</div>
+        </div>
+      </div>
+      <div class="acronym-row">
+        <div class="acronym-row-tag"><span class="hot-tag red">Caution</span></div>
+        <div class="acronym-row-content">
+          <div class="hot-question">Is the property found in a Sensitive location?</div>
+          <div class="hot-desc">Found in a non-public area, near critical infrastructure or structural supports, or near an area with potential for mass casualties (e.g. food court).</div>
+        </div>
       </div>
     </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">O</div>
-      <div class="hot-content">
-        <div class="hot-tag red">Caution</div>
-        <div class="hot-question">Is it Obviously Suspicious?</div>
-        <div class="hot-desc">An item with the characteristics of a bomb/hazardous material requires additional caution. This includes leakage of fuel oil, unusual smells, bulges or protruding wires, power source, batteries, LED lights, pieces of metal or glass (shrapnel).</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">T</div>
-      <div class="hot-content">
-        <div class="hot-tag">Consider</div>
-        <div class="hot-question">Is it Typical?</div>
-        <div class="hot-desc">An item that is not typically discarded or forgotten in that area requires additional caution.</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">A</div>
-      <div class="hot-content">
-        <div class="hot-tag red">Alert Level</div>
-        <div class="hot-question">Is the government Alert Level Elevated?</div>
-        <div class="hot-desc">When the National Terrorism Threat Level is increased, additional caution is required.</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">L</div>
-      <div class="hot-content">
-        <div class="hot-tag red">Caution</div>
-        <div class="hot-question">Is the Location in Receipt of a Threat?</div>
-        <div class="hot-desc">If a threat is received that a bomb or other dangerous device has been left in the centre, additional caution is required. Is the threat maker known or familiar? If yes, additional caution is required.</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">E</div>
-      <div class="hot-content">
-        <div class="hot-tag">Consider</div>
-        <div class="hot-question">Is it in a Sensitive Location?</div>
-        <div class="hot-desc">Is the property found in a non-public area, near critical infrastructure or structural supports, or near an area with potential for mass casualties (e.g. food court)? Additional caution is required.</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">R</div>
-      <div class="hot-content">
-        <div class="hot-tag">Consider</div>
-        <div class="hot-question">Reconnaissance</div>
-        <div class="hot-desc">Has suspicious activity been noted in the area recently? Could this be a reconnaissance exercise?</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">T</div>
-      <div class="hot-content">
-        <div class="hot-tag">Consider</div>
-        <div class="hot-question">Timing</div>
-        <div class="hot-desc">Environmental factors — current events, time of day, day of week, holiday, anniversary of terrorist attacks. Does the timing raise concern?</div>
-      </div>
-    </div>
-
-    <div class="hot-card">
-      <div class="hot-letter">S</div>
-      <div class="hot-content">
-        <div class="hot-tag red">Caution</div>
-        <div class="hot-question">Is the property found in a Sensitive location?</div>
-        <div class="hot-desc">If an unattended package is found in a non-public area, near critical infrastructure or structural supports, or near an area with potential for mass casualties (e.g. food court), additional caution is required.</div>
-      </div>
-    </div>
-
   </div>
 
   <!-- GET THE FACTS -->

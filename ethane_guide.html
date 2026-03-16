@@ -111,100 +111,69 @@
   }
   .intro-card strong { color: var(--yellow); }
 
-  /* ETHANE ACRONYM GRID */
-  .ethane-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 14px;
-  }
-
-  .ethane-card {
+  /* VERTICAL ACRONYM — paired rows (matches HOTALERTS layout) */
+  .acronym-block {
     background: white;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(26,35,64,0.08);
+    box-shadow: 0 2px 10px rgba(26,35,64,0.10);
     display: flex;
     flex-direction: column;
     animation: fadeUp 0.4s ease both;
   }
-  .ethane-card:nth-child(1) { animation-delay: 0.05s; }
-  .ethane-card:nth-child(2) { animation-delay: 0.10s; }
-  .ethane-card:nth-child(3) { animation-delay: 0.15s; }
-  .ethane-card:nth-child(4) { animation-delay: 0.20s; }
-  .ethane-card:nth-child(5) { animation-delay: 0.25s; }
-  .ethane-card:nth-child(6) { animation-delay: 0.30s; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .ethane-card-header {
-    background: var(--navy);
+  .acronym-paired-row {
     display: flex;
-    align-items: center;
-    gap: 0;
+    border-bottom: 1px solid #eef0f5;
+    animation: fadeUp 0.4s ease both;
   }
-  .ethane-letter {
-    background: var(--yellow);
-    color: var(--navy);
+  .acronym-paired-row:last-child { border-bottom: none; }
+  .acronym-letter-cell {
+    background: var(--navy);
+    color: var(--yellow);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-weight: 900;
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    min-width: 58px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    line-height: 1;
   }
-  .ethane-heading {
-    padding: 10px 14px;
+  .acronym-row-inner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+  }
+  .acronym-row-tag { flex-shrink: 0; width: 76px; }
+  .element-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--yellow);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: white;
-    letter-spacing: 0.5px;
-    line-height: 1.1;
-  }
-  .ethane-heading small {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.45);
+    font-size: 0.68rem;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 2px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
   }
-
-  .ethane-body {
-    padding: 14px 16px;
-    flex: 1;
+  .hot-question {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 3px;
+    line-height: 1.2;
   }
-  .ethane-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .ethane-list li {
-    display: flex;
-    gap: 10px;
-    font-size: 0.87rem;
+  .hot-desc {
+    font-size: 0.82rem;
     line-height: 1.5;
-    color: #333;
-    align-items: flex-start;
-  }
-  .ethane-list li::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    background: var(--yellow);
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 6px;
+    color: #444;
   }
 
   /* QUICK REF STRIP */
@@ -279,87 +248,67 @@
     <p>The <strong>ETHANE mnemonic</strong> assists staff to relay the important information required by emergency services when reporting a critical incident. Work through each element in order to ensure nothing is missed.</p>
   </div>
 
-  <div class="ethane-grid">
-
-    <div class="ethane-card">
-      <div class="ethane-card-header">
-        <div class="ethane-letter">E</div>
-        <div class="ethane-heading"><small>Element 1</small>Exact Location</div>
+  <div class="acronym-block">
+      <div class="acronym-paired-row" style="animation-delay:0.05s">
+        <div class="acronym-letter-cell">E</div>
+        <div class="acronym-row-inner">
+          <div class="acronym-row-tag"><span class="element-tag">Step 01</span></div>
+          <div>
+            <div class="hot-question">Exact Location</div>
+            <div class="hot-desc">Confirm nearest junction or exact address. Report the geographical size of the incident.</div>
+          </div>
+        </div>
       </div>
-      <div class="ethane-body">
-        <ul class="ethane-list">
-          <li>Confirm nearest junction or exact address</li>
-          <li>Geographical size of the incident</li>
-        </ul>
+      <div class="acronym-paired-row" style="animation-delay:0.10s">
+        <div class="acronym-letter-cell">T</div>
+        <div class="acronym-row-inner">
+          <div class="acronym-row-tag"><span class="element-tag">Step 02</span></div>
+          <div>
+            <div class="hot-question">Type of Incident</div>
+            <div class="hot-desc">Explosion, building collapse, firearms incident, or other emergency type.</div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="ethane-card">
-      <div class="ethane-card-header">
-        <div class="ethane-letter">T</div>
-        <div class="ethane-heading"><small>Element 2</small>Type of Incident</div>
+      <div class="acronym-paired-row" style="animation-delay:0.15s">
+        <div class="acronym-letter-cell">H</div>
+        <div class="acronym-row-inner">
+          <div class="acronym-row-tag"><span class="element-tag">Step 03</span></div>
+          <div>
+            <div class="hot-question">Hazards</div>
+            <div class="hot-desc">Identify hazards present or suspected — number of hostiles, types of weapons, potential or secondary devices. Is evacuation or in-vacuation necessary and safe?</div>
+          </div>
+        </div>
       </div>
-      <div class="ethane-body">
-        <ul class="ethane-list">
-          <li>Explosion, building collapse, firearms incident etc.</li>
-        </ul>
+      <div class="acronym-paired-row" style="animation-delay:0.20s">
+        <div class="acronym-letter-cell">A</div>
+        <div class="acronym-row-inner">
+          <div class="acronym-row-tag"><span class="element-tag">Step 04</span></div>
+          <div>
+            <div class="hot-question">Access Routes</div>
+            <div class="hot-desc">Nominate and search the rendezvous point. Clarify routes which are blocked and update with routes that are safe to use.</div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="ethane-card">
-      <div class="ethane-card-header">
-        <div class="ethane-letter">H</div>
-        <div class="ethane-heading"><small>Element 3</small>Hazards</div>
+      <div class="acronym-paired-row" style="animation-delay:0.25s">
+        <div class="acronym-letter-cell">N</div>
+        <div class="acronym-row-inner">
+          <div class="acronym-row-tag"><span class="element-tag">Step 05</span></div>
+          <div>
+            <div class="hot-question">Number of Casualties</div>
+            <div class="hot-desc">List type and severity. Approximate number of dead, injured, survivors and witnesses.</div>
+          </div>
+        </div>
       </div>
-      <div class="ethane-body">
-        <ul class="ethane-list">
-          <li>Identify the hazards present or suspected (such as number of hostiles, types of weapons etc.)</li>
-          <li>Consider potential or secondary devices</li>
-          <li>Is evacuation or in-vacuation necessary and safe?</li>
-        </ul>
+      <div class="acronym-paired-row" style="animation-delay:0.30s">
+        <div class="acronym-letter-cell">E</div>
+        <div class="acronym-row-inner">
+          <div class="acronym-row-tag"><span class="element-tag">Step 06</span></div>
+          <div>
+            <div class="hot-question">Emergency Services</div>
+            <div class="hot-desc">List those services present and those required. Conduct a joint dynamic hazard assessment with the emergency services.</div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="ethane-card">
-      <div class="ethane-card-header">
-        <div class="ethane-letter">A</div>
-        <div class="ethane-heading"><small>Element 4</small>Access Routes</div>
-      </div>
-      <div class="ethane-body">
-        <ul class="ethane-list">
-          <li>Nominate and search the rendezvous point</li>
-          <li>Clarify routes which are blocked</li>
-          <li>Update with routes that are safe to use</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="ethane-card">
-      <div class="ethane-card-header">
-        <div class="ethane-letter">N</div>
-        <div class="ethane-heading"><small>Element 5</small>Number of Casualties</div>
-      </div>
-      <div class="ethane-body">
-        <ul class="ethane-list">
-          <li>List type and severity</li>
-          <li>Approximate number of dead, injured, survivors and witnesses</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="ethane-card">
-      <div class="ethane-card-header">
-        <div class="ethane-letter">E</div>
-        <div class="ethane-heading"><small>Element 6</small>Emergency Services</div>
-      </div>
-      <div class="ethane-body">
-        <ul class="ethane-list">
-          <li>List those services present and those required</li>
-          <li>Conduct a joint dynamic hazard assessment with the emergency services</li>
-        </ul>
-      </div>
-    </div>
-
   </div>
 
   <!-- QUICK REFERENCE STRIP -->
